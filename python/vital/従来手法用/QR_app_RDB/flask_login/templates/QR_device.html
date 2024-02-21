@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.2, maximum-scale=4, user-scalable=yes">
+</head>
+<body>
+    <h1>デバイスIDを取得してください</h1>
+    <script src="//code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/jsqr@1.3.1/dist/jsQR.min.js"></script>
+    <video id="camera" autoplay playsinline>video view</video>
+    <div style="display:none">
+        <canvas id="snapshot" width="480" height="640">canvas view</canvas>
+    </div>
+    <div id="msg">Unable to access video stream.</div>
+    <form method ="POST">
+        <label for="">送信内容</label>
+        <input type="text" id = "content" name = "ID">
+        <input type="submit" value="送信" >
+    </form>
+    <a href="/" role="button">終了</a>
+
+    <script>
+        let player = document.getElementById('camera');
+        let snapshotCanvas = document.getElementById('snapshot');
+        let width = snapshotCanvas.width;
+        let height = snapshotCanvas.height;
+        let msg    = document.getElementById("msg");
+        // カメラ使用の許可ダイアログが表示される
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+            .then(function (stream) {
+                player.srcObject = stream;
+                startscan();
+
+            })
+            .catch(function (err) {
+                console.error('カメラへのアクセス許可が拒否されました: ', err);
+            });
+        
+        let startscan = function(callback){
+            msg.innerText = "Loading video...";
+            const canvasContext = snapshotCanvas.getContext("2d");
+            // 500ms間隔でスナップショットを取得し、QRコードの読み取りを行う
+            let intervalHandler = setInterval(() => {
+
+                canvasContext.drawImage(player, 0, 0, width, height);
+                const imageData = canvasContext.getImageData(0, 0, width, height);
+
+                const scanResult = jsQR(imageData.data, imageData.width, imageData.height);
+
+            if (scanResult) {
+                clearInterval(intervalHandler);
+                msg.innerText = scanResult.data;
+                document.getElementById("content").value = scanResult.data;
+                if (callback) {
+                callback(scanResult);
+                }
+            }
+            }, 500)
+        };
+    </script>
+</body>
+</html>
