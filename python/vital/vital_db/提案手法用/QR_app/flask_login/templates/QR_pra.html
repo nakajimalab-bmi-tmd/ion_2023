@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.2, maximum-scale=4, user-scalable=yes">
+
+</head>
+<body>
+    <script src="./dist/jsQR.js" defer></script>
+    <div class="reader">
+        <video id="js-video" class="reader-video" autoplay playsinline></video>
+    </div>
+    <div style="display:none">
+        <canvas id="js-canvas"></canvas>
+    </div>
+
+    <div id="msg">Unable to access video stream.</div>
+      
+    <script>      
+    const video  = document.querySelector('#js-video')
+    let msg    = document.getElementById("msg");
+    navigator.mediaDevices
+    .getUserMedia({
+        audio: false,
+        video: {
+            facingMode: {
+                exact: 'environment'
+            }
+        }
+    })
+    .then(function(stream) {
+        video.srcObject = stream
+        video.onloadedmetadata = function(e) {
+            video.play();
+            checkImage();
+        }
+    })
+    .catch(function(err) {
+        alert('Error!!')
+    })
+
+    const canvas = document.querySelector('#js-canvas')
+    const ctx = canvas.getContext('2d')
+
+    function checkImage(){
+        msg.innerText = "scan";
+        // 取得している動画をCanvasに描画
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
+
+        // Canvasからデータを取得
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+
+        // jsQRに渡す
+        const code = jsQR(imageData.data, canvas.width, canvas.height)
+
+        // QRコードの読み取りに成功したらモーダル開く
+        // 失敗したら再度実行
+        if (code) {
+            msg.innerText = code.data;
+            alert( code.data );
+        } else {
+            msg.innerText = "Detecting QR-Code...";
+        }
+        setTimeout(startTick, 200);
+    }
+
+    </script>
+</body>
+</html>
