@@ -1,0 +1,5 @@
+# if10_recurisve,if20_recurisve,if30_recurisve,if40_recurisve,if50_recurisve
+実験に使用したIRISに格納したプログラム。再帰的接続が可能なようにしている。
+
+# time_val
+再帰的検索における検索時間を解析するのに使用したプログラム等。
