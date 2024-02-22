@@ -2,7 +2,7 @@
 クライアント側のプログラム。NW上にクエリを流す。
 
 # ion_sample_if_recursive.py
-エージェント側のプログラム。出力データのセマンティックをリッスンし、適当なクエリがきたら入力データのセマンティックをクエリとしてNW上に流す。
+エージェント側のプログラム。出力データのセマンティックをリッスンし、適当なクエリがきたら入力データのセマンティックをクエリとしてNW上に流す。エージェントごと（ラズパイごと）に入出力データのセマンティックを割り振る必要がある。
 
 # time_analysis_svrN_multi_recursive.py
 縦軸が再帰的検索にかかった時間、横軸がNW上のエージェント数のグラフを出力する。用いたデータは、result/nw_search_recursive/if10_multi_all.xlsx、result/nw_search_recursive/if_20_multi_all.xlsx、result/nw_search_recursive/if30_multi_all.xlsx、result/nw_search_recursive/if40re2_recursive.xlsx、result/nw_search_recursive/if50_recursive_multi_all.xlsx
