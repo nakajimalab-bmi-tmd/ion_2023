@@ -1,8 +1,10 @@
-# cli_search_DB.py
+# if_time_auto.py
 IRIS内に格納されているアルゴリズムを検索するプログラム。実験で用いたIRISのクラスはiris/ion_search_val/if10.cls、iris/ion_search_val/if20.cls、iris/ion_search_val/if30re.cls、iris/ion_search_val/if40.cls、iris/ion_search_val/if50.cls
 標準出力で検索時間が出力される。
+
 # time_analysis_svrN_not_multi.py
-縦軸が検索時間、横軸がクラス内に格納されているアルゴリズムの数である。
+縦軸が検索時間、横軸がクラス内に格納されているアルゴリズムの数である。用いたデータは、result/db_search/10、result/db_search/20、result/db_search/30、result/db_search/４0、result/db_search/５0
+
 出力されるグラフは以下
 
 
