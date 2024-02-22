@@ -7,4 +7,4 @@
 出力されるグラフは以下
 
 
-<img width="345" alt="image" src="https://github.com/nakajimalab-bmi-tmd/ion_2023/assets/103047091/55677f50-3374-46f2-9c08-ecad1fb8e5f3">
+<img width="318" alt="image" src="https://github.com/nakajimalab-bmi-tmd/ion_2023/assets/103047091/71fada7c-f8df-49a1-bfdb-3f4be94c8ca7">
