@@ -7,4 +7,6 @@
 # time_analysis_svrN_multi.py
 縦軸がアルゴリズム検索時間、横軸がアルゴリズムの数であるグラフ化するプログラム。用いるデータは、result/nw_search/nw_search.xlsx
 出力されるグラフは以下
+
+
 <img width="323" alt="image" src="https://github.com/nakajimalab-bmi-tmd/ion_2023/assets/103047091/c209cc85-c155-45d7-a7e9-ac4bf70dcf8f">
