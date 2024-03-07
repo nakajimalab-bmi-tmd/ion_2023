@@ -134,7 +134,7 @@ while True:
     sock_rcvudp.bind((host, port))
     
     #TCP by send port 
-    send_port = 6000
+    send_port = 6000  #相手(クライアント)のポート番号
     socket_sendtcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     
 
@@ -151,6 +151,7 @@ while True:
             res_msg = json.dumps({"msg" : "ok", "port" : tcp_port})
             #res_msg = "ok"
             sock_rcvudp.close()
+	    #tcpで返答
             socket_sendtcp.connect((addr[0], send_port))
             socket_sendtcp.sendall(res_msg.encode())
             break
